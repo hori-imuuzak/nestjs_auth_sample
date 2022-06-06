@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { FirebaseAuthStrategy } from 'src/firebase/firebase-auth.strategy';
 import { UsersModule } from 'src/users/users.module';
 import { jwtConstants } from './auth.constants';
 import { AuthService } from './auth.service';
@@ -16,7 +17,7 @@ import { LocalStrategy } from './local.strategy';
       signOptions: { expiresIn: '60s' },
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy, FirebaseAuthStrategy],
   exports: [AuthService],
 })
 export class AuthModule {}
